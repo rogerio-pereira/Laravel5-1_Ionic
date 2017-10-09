@@ -4,20 +4,10 @@
     <div class='container'>
         <h3>Editando Categoria: {{$category->name}}</h3>
 
-        @if($errors->any())
-            <ul class='alert alert-danger'>
-                @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        @endif
+        @include('errors._check')
 
         {!! Form::model($category, ['route' => ['admin.categories.update', $category->id]]) !!}
-            <div class='form-group'>
-                {!! Form::label('name', 'Nome:') !!}
-                {!! Form::text('name', null, ['class' => 'form-control']) !!}
-            </div>
-
+            @include('admin.categories._form')
 
             <div class='form-group'>
                 {!! Form::submit('Salvar Categoria', ['class' => 'btn btn-primary']) !!}

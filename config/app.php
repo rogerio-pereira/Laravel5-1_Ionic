@@ -149,6 +149,9 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         CodeDelivery\Providers\RepositoryServiceProvider::class,
 
+        //Scafold
+        Bestmomo\Scafold\ScafoldServiceProvider::class,
+
     ],
 
     /*

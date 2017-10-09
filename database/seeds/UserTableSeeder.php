@@ -12,7 +12,24 @@ class UserTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    { 
+        //Usuario Comum
+        factory(User::class)->create([
+            'name' => 'User',
+            'email' => 'user@user.com',
+            'password' => bcrypt('123456'),
+            'remember_token' => str_random(10),
+        ]);
+
+        //Administrador
+        factory(User::class)->create([
+            'name' => 'Admin',
+            'email' => 'admin@user.com',
+            'password' => bcrypt('123456'),
+            'role' => 'admin',
+            'remember_token' => str_random(10),
+        ]);
+
         //Clientes
         factory(User::class, 10)->create()->each(function($user){
             $user->client()->save(factory(Client::class)->make());

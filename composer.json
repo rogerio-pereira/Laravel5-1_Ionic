@@ -9,7 +9,8 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "prettus/l5-repository": "^2.6",
-        "bestmomo/scafold": "dev-master"
+        "bestmomo/scafold": "dev-master",
+        "laravelcollective/html": "5.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

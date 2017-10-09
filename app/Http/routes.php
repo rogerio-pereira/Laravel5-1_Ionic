@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::get('/admin/categories', 'CategoriesController@index');
 Route::get('/admin/categories/create', 'CategoriesController@create')->name('admin.categories.create');
+Route::post('/admin/categories/store', 'CategoriesController@store')->name('admin.categories.store');

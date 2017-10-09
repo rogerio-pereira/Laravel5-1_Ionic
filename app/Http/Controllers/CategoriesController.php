@@ -11,6 +11,9 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        return view('admin.categories.index');
+        $nome = 'Rogerio';
+        $linguagens = ['php', 'java', 'python'];
+
+        return view('admin.categories.index', compact('nome', 'linguagens'));
     }
 }

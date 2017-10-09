@@ -47,8 +47,8 @@ class CategoriesController extends Controller
     public function update(AdminCategoryRequest $request, $id)
     {
         $data = $request->all();
-        //$this->repository->create($data);
+        $this->repository->update($data, $id);
 
-        //return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index');
     }
 }

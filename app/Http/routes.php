@@ -20,3 +20,9 @@ Route::get('/admin/categories/create', 'CategoriesController@create')->name('adm
 Route::post('/admin/categories/store', 'CategoriesController@store')->name('admin.categories.store');
 Route::get('/admin/categories/edit/{id}', 'CategoriesController@edit')->name('admin.categories.edit');
 Route::post('/admin/categories/update/{id}', 'CategoriesController@update')->name('admin.categories.update');
+
+Route::get('/admin/products', 'ProductsController@index')->name('admin.products.index');
+Route::get('/admin/products/create', 'ProductsController@create')->name('admin.products.create');
+Route::post('/admin/products/store', 'ProductsController@store')->name('admin.products.store');
+Route::get('/admin/products/edit/{id}', 'ProductsController@edit')->name('admin.products.edit');
+Route::post('/admin/products/update/{id}', 'ProductsController@update')->name('admin.products.update');

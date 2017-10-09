@@ -26,3 +26,4 @@ Route::get('/admin/products/create', 'ProductsController@create')->name('admin.p
 Route::post('/admin/products/store', 'ProductsController@store')->name('admin.products.store');
 Route::get('/admin/products/edit/{id}', 'ProductsController@edit')->name('admin.products.edit');
 Route::post('/admin/products/update/{id}', 'ProductsController@update')->name('admin.products.update');
+Route::get('/admin/products/destroy/{id}', 'ProductsController@destroy')->name('admin.products.destroy');

@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 //Admin
-Route::group(['prefix' => '/admin', 'as' => 'admin.'], function() {
+Route::group(['prefix' => '/admin', 'middleware' => 'auth.checkrole',  'as' => 'admin.'], function() {
     //Categorias
     Route::group(['prefix' => '/categories', 'as' => 'categories.'], function() {
         Route::get('/', 'CategoriesController@index')->name('index');
@@ -27,7 +27,7 @@ Route::group(['prefix' => '/admin', 'as' => 'admin.'], function() {
     });
 
     //Produtos
-    Route::group(['prefix' => '/products', 'as' => '/products'], function() {
+    Route::group(['prefix' => '/products', 'as' => 'products.'], function() {
         Route::get('/', 'ProductsController@index')->name('index');
         Route::get('/create', 'ProductsController@create')->name('create');
         Route::post('/store', 'ProductsController@store')->name('store');

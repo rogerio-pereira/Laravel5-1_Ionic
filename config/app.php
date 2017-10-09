@@ -147,6 +147,7 @@ return [
 
         //Repository
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
+        CodeDelivery\Providers\RepositoryServiceProvider::class,
 
     ],
 

@@ -32,7 +32,9 @@ class ProductsController extends Controller
 
     public function create()
     {
-        return view('admin.products.create');
+        $categories = $this->categoryRepository->listagemCombobox();
+
+        return view('admin.products.create', compact('categories'));
     }
 
     public function store(AdminProductRequest $request)

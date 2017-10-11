@@ -23,6 +23,6 @@
             </tbody>
         </table>
 
-        {!!$orders->render()!!}
+        {{-- {!!$orders->render()!!} --}}
     </div>
 @endsection

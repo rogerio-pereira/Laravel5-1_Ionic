@@ -45,4 +45,14 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth.checkrole',  'as' => '
         Route::post('/update/{id}', 'ClientsController@update')->name('update');
         Route::get('/destroy/{id}', 'ClientsController@destroy')->name('destroy');
     });
+
+    //Orders
+    Route::group(['prefix' => '/orders', 'as' => 'orders.'], function() {
+        Route::get('/', 'OrdersController@index')->name('index');
+        Route::get('/create', 'ClientsController@create')->name('create');
+        Route::post('/store', 'ClientsController@store')->name('store');
+        Route::get('/edit/{id}', 'ClientsController@edit')->name('edit');
+        Route::post('/update/{id}', 'ClientsController@update')->name('update');
+        Route::get('/destroy/{id}', 'ClientsController@destroy')->name('destroy');
+    });
 });

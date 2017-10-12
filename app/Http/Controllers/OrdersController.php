@@ -33,8 +33,18 @@ class OrdersController extends Controller
             0 => 'Pendente',
             1 => 'A Caminho',
             2 => 'Entregue',
+            2 => 'Cancelado',
         ];
 
         return view('admin.orders.edit', compact('order', 'statusList', 'deliverymen'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+
+        $this->repository->update($data, $id);
+
+        return redirect()->route('admin.orders.index');
     }
 }

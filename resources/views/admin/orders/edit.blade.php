@@ -10,5 +10,13 @@
             <strong>Entregar em:</strong><br/>
             {{$order->client->address}} - {{$order->client->city}} -  {{$order->client->state}}
         </p>
+
+        {!! Form::model($order, ['route' => ['admin.orders.update', $order->id]]) !!}
+            @include('admin.orders._form')
+
+            <div class='form-group'>
+                {!! Form::submit('Salvar', ['class' => 'btn btn-primary']) !!}
+            </div>
+        {!! Form::close() !!}
     </div>
 @endsection

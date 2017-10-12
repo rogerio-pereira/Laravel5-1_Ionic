@@ -5,6 +5,7 @@ namespace CodeDelivery\Http\Controllers;
 use CodeDelivery\Http\Controllers\Controller;
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Repositories\OrderRepository;
+use CodeDelivery\Repositories\UserRepository;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -23,10 +24,17 @@ class OrdersController extends Controller
         return view('admin.orders.index', compact('orders'));
     }
 
-    public function edit($id)
+    public function edit($id, UserRepository $userRepository)
     {
         $order = $this->repository->find($id);
+        $deliverymen = $userRepository->getDeliverymenCombobox();
 
-        return view('admin.orders.edit', compact('order'));
+        $statusList = [
+            0 => 'Pendente',
+            1 => 'A Caminho',
+            2 => 'Entregue',
+        ];
+
+        return view('admin.orders.edit', compact('order', 'statusList', 'deliverymen'));
     }
 }

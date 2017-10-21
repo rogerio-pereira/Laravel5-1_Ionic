@@ -77,3 +77,9 @@ Route::group(['prefix' => '/customer', 'middleware' => 'auth.checkrole:client', 
         Route::post('/store', 'CheckoutController@store')->name('store');
     });
 });
+
+
+//API
+Route::post('oauth/access_token', function() {
+    return Response::json(Authorizer::issueAccessToken());
+});

@@ -15,8 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 //Admin
-Route::group(['prefix' => '/admin', 'middleware' => 'auth.checkrole',  'as' => 'admin.'], function() {
+Route::group(['prefix' => '/admin', 'middleware' => 'auth.checkrole:admin',  'as' => 'admin.'], function() {
     //Categorias
     Route::group(['prefix' => '/categories', 'as' => 'categories.'], function() {
         Route::get('/', 'CategoriesController@index')->name('index');
@@ -65,7 +69,7 @@ Route::group(['prefix' => '/admin', 'middleware' => 'auth.checkrole',  'as' => '
     });
 });
 
-Route::group(['prefix' => '/customer', 'as' => 'customer.'], function() {
+Route::group(['prefix' => '/customer', 'middleware' => 'auth.checkrole:client', 'as' => 'customer.'], function() {
     //Orders
     Route::group(['prefix' => '/orders', 'as' => 'orders.'], function() {
         Route::get('/', 'CheckoutController@index')->name('index');

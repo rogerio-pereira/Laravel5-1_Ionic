@@ -6,7 +6,7 @@
         
         @include('errors._check')
 
-        {!! Form::open(/*['route' => 'customer.checkout.store']*/) !!}
+        {!! Form::open(['route' => 'customer.orders.store']) !!}
             <div class='form-group'>
                 <label>Total:</label>
                 <p id='total'></p>
@@ -22,7 +22,7 @@
                     <tbody>
                         <tr>
                             <td>
-                                <select class='form-control' name='items[0][product_id'>
+                                <select class='form-control' name='items[0][product_id]'>
                                     @foreach ($products as $p)
                                         <option value='{{$p->id}}' data-price='{{$p->price}}'>
                                             {{$p->name}} - {{$p->price}}

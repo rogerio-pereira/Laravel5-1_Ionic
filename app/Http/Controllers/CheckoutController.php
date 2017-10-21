@@ -41,7 +41,7 @@ class CheckoutController extends Controller
     public function index()
     {
         $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
-        $orders = $this->repository->scopeQuery(function($query) use($clientId) {
+        $orders = $this->orderRepository->scopeQuery(function($query) use($clientId) {
             return $query->where('client_id', '=', $clientId);
         })->paginate();
 
@@ -76,50 +76,5 @@ class CheckoutController extends Controller
         $this->service->create($data);
 
         return redirect()->route('customer.orders.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

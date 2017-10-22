@@ -84,20 +84,24 @@ Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
 });
 
-Route::group(['prefix' => 'api', 'middleware' => 'oauth',  'as' => 'api.'], function() {
+Route::group([
+    'prefix' => 'api', 
+    'middleware' => 'oauth', 
+    'as' => 'api.', 
+    'namespace' => 'Api'
+], function() {
 
     //Client 
-    Route::group(['prefix' => 'client', 'middleware' => 'oauth.checkrole:client', 'as' => 'client.'], function() {
-
-        
-
-        Route::get('pedidos', function(){
-            return [
-                'id' => 1,
-                'client' => 'Rogerio Pereira Client',
-                'total' => 10
-            ];
-        });
+    Route::group([
+        'prefix' => 'client', 
+        'middleware' => 'oauth.checkrole:client', 
+        'as' => 'client.', 
+        'namespace' => 'Client'
+    ], function() {
+        Route::resource('order', 
+            'ClientCheckoutController', 
+            ['except' => ['create', 'edit', 'destroy']]
+        ); 
     });
 
 

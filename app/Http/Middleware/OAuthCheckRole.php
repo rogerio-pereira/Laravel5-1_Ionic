@@ -3,6 +3,7 @@
 namespace CodeDelivery\Http\Middleware;
 
 use Closure;
+use CodeDelivery\Repositories\UserRepository;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class OAuthCheckRole
@@ -23,7 +24,7 @@ class OAuthCheckRole
      */
     public function handle($request, Closure $next, $role)
     {
-        $id = Authorizer::getResourcerOwnerId();
+        $id = Authorizer::getResourceOwnerId();
 
         $user = $this->userRepository->find($id);
 

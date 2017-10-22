@@ -85,11 +85,26 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::group(['prefix' => 'api', 'middleware' => 'oauth',  'as' => 'api.'], function() {
-    Route::get('pedidos', function(){
-        return [
-            'id' => 1,
-            'client' => 'Rogerio Pereira',
-            'total' => 10
-        ];
+    //Client
+    Route::group(['prefix' => 'client', 'as' => 'client.'], function() {
+        Route::get('pedidos', function(){
+            return [
+                'id' => 1,
+                'client' => 'Rogerio Pereira Client',
+                'total' => 10
+            ];
+        });
+    });
+
+
+    Route::group(['prefix' => 'deliveryman', 'as' => 'deliveryman.'], function() {
+        
+        Route::get('pedidos', function(){
+            return [
+                'id' => 1,
+                'client' => 'Rogerio Pereira Entregador',
+                'total' => 10
+            ];
+        });
     });
 });

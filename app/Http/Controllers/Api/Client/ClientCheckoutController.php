@@ -9,7 +9,6 @@ use CodeDelivery\Repositories\ProductRepository;
 use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 class ClientCheckoutController extends Controller
@@ -61,12 +60,14 @@ class ClientCheckoutController extends Controller
     {
         $data = $request->all();
 
-        $clientId = $this->userRepository->find(Auth::user()->id)->client->id;
+        $userId = Authorizer::getResourceOwnerId();
+
+        $clientId = $this->userRepository->find($userId)->client->id;
         $data['client_id'] = $clientId;
 
-        $this->service->create($data);
-
-        return redirect()->route('customer.orders.index');
+        $order = $this->service->create($data);
+        $order = $this->orderRepository->with(['items'])->find($order->id);
+        return $order;
     }
 
     public function show($id)

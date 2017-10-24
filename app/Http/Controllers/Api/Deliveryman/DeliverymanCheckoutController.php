@@ -50,4 +50,18 @@ class DeliverymanCheckoutController extends Controller
         $deliverymanId = Authorizer::getResourceOwnerId();
         return $this->orderRepository->getByIdAndDeliveryman($id, $deliverymanId);
     }
+
+    public function updateStatus(Request $request, $id)
+    {
+        $status = $request->get('status');
+        $deliverymanId = Authorizer::getResourceOwnerId();
+
+        $order = $this->service->updateStatus($id, $deliverymanId, $status);
+
+        if($order) {
+            return $order;
+        }
+
+        abort(400, 'Order não encontrado');
+    }
 }

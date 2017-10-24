@@ -115,5 +115,6 @@ Route::group([
             'DeliverymanCheckoutController', 
             ['except' => ['create', 'store', 'edit', 'destroy']]
         ); 
+        Route::patch('order/{id}/update-status','DeliverymanCheckoutController@updateStatus')->name('update_status');
     });
 });

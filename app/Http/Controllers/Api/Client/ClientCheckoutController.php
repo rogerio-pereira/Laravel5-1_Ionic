@@ -5,7 +5,6 @@ namespace CodeDelivery\Http\Controllers\Api\Client;
 use CodeDelivery\Http\Controllers\Controller;
 use CodeDelivery\Http\Requests;
 use CodeDelivery\Repositories\OrderRepository;
-use CodeDelivery\Repositories\ProductRepository;
 use CodeDelivery\Repositories\UserRepository;
 use CodeDelivery\Services\OrderService;
 use Illuminate\Http\Request;
@@ -14,21 +13,18 @@ use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 class ClientCheckoutController extends Controller
 {
     private $orderRepository;
-    private $userRepository;
-    private $productRepository;
+    private $userRepository;    
 
     private $service;
 
     public function __construct(
                                     OrderRepository $orderRepository, 
-                                    UserRepository $userRepository,
-                                    ProductRepository $productRepository,
+                                    UserRepository $userRepository,     
                                     OrderService $service
                                 )
     {
         $this->orderRepository = $orderRepository;
-        $this->userRepository = $userRepository;
-        $this->productRepository = $productRepository;
+        $this->userRepository = $userRepository;    
 
         $this->service = $service;
     }

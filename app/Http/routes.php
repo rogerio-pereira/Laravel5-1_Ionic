@@ -104,15 +104,16 @@ Route::group([
         ); 
     });
 
-
-    Route::group(['prefix' => 'deliveryman',  'middleware' => 'oauth.checkrole:deliveryman', 'as' => 'deliveryman.'], function() {
-        
-        Route::get('pedidos', function(){
-            return [
-                'id' => 1,
-                'client' => 'Rogerio Pereira Entregador',
-                'total' => 10
-            ];
-        });
+    //Deliveryman 
+    Route::group([
+        'prefix' => 'deliveryman', 
+        'middleware' => 'oauth.checkrole:deliveryman', 
+        'as' => 'deliveryman.', 
+        'namespace' => 'Deliveryman'
+    ], function() {
+        Route::resource('order', 
+            'DeliverymanCheckoutController', 
+            ['except' => ['create', 'store', 'edit', 'destroy']]
+        ); 
     });
 });

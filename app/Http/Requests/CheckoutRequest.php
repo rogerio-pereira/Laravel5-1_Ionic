@@ -3,6 +3,7 @@
 namespace CodeDelivery\Http\Requests;
 
 use CodeDelivery\Http\Requests\Request;
+use Illuminate\Http\Request as HttpRequest;
 
 class CheckoutRequest extends Request
 {
@@ -21,10 +22,27 @@ class CheckoutRequest extends Request
      *
      * @return array
      */
-    public function rules()
+    public function rules(HttpRequest $request)
     {
-        return [
+        $rules = [
             'cupom_code' => 'exists:cupoms,code,used,0',
         ];
+
+        $this->buildRulesItem(0, $rules);
+
+        $items = $request->get('items',[]);     //Obtem o campo items, e se estiver vazio atribui um array vazio
+        $items = !is_array($items) ? [] : $items; //Verifica se os items não forem um array, então receberá um array vazio, se for recebe ele mesmo
+
+        foreach($items as $key => $value) {
+            $this->buildRulesItem($key, $rules);
+        }
+
+        return $rules;
+    }
+
+    public function buildRulesItem($key, array &$rules)
+    {
+        $rules["items.$key.product_id"] = 'required';
+        $rules["items.$key.qtd"]        = 'required';
     }
 }

@@ -11,9 +11,23 @@ use CodeDelivery\Models\Order;
  */
 class OrderTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = [
-        'cupom'
-    ];
+    
+    /*
+        SÃO CHAMADOS TODAS AS VEZES
+        USAR COM DADOS EXTREMAMENTE NECESSÁRIOS
+     */
+    //protected $defaultIncludes = ['cupom', 'items'];
+
+    /*
+        SÃO CHAMADOS SOB DEMANDA
+        PARA SEREM CHAMADOS A REQUISIÇÃO DEVE CONTER UM PARAMETRO NA URL INCLUDE E O NOME DO RELACIONAMENTO
+
+        EX: http://laravelionic/api/client/order/1?include=cupom,items
+
+        USAR QUANDO OS DADOS NÃO FOREM TÃO NECESSÁRIOS
+        DIMINUI O VOLUME DE DADOS, DEIXANDO O APP MAIS RAPIDO
+     */
+    protected $availableIncludes = ['cupom', 'items'];
 
     /**
      * Transform the \Order entity
@@ -31,11 +45,18 @@ class OrderTransformer extends TransformerAbstract
         ];
     }
 
+    //Relacionamento ManyToOne
     public function includeCupom(Order $model)
     {
         if(!$model->cupom)
             return null;
         
         return $this->item($model->cupom, new CupomTransformer()); 
+    }
+
+    //Relacionamento OneToMany
+    public function includeItems(Order $model)
+    {
+        return $this->collection($model->items, new OrderItemTransformer()); 
     }
 }

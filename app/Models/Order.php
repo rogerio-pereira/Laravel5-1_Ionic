@@ -18,6 +18,14 @@ class Order extends Model implements Transformable
         'cupom_id',
     ];
 
+    public function transform()
+    {
+        return [
+            'order' => $this->id,
+            'order_items' => $this->items,
+        ];
+    }
+
     public function items()
     {
         return $this->hasMany(OrderItem::class);

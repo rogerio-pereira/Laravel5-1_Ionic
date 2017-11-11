@@ -15,6 +15,9 @@ use Prettus\Repository\Eloquent\BaseRepository;
  */
 class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 {
+    protected $skipPresenter = true;
+
+
     /**
      * Specify Model class name
      *

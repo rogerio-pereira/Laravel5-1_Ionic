@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-navbar color="primary">                                                                                                                                                      
-    <button ion-button color='dark'>
-      Botao
+  <ion-navbar color="primary">
+    <button ion-button icon-only clear>
+      <ion-icon name="star"></ion-icon>
     </button>
 
-    <ion-title>Ionic App Title</ion-title>
+    <ion-title text-center>Ionic App Title</ion-title>
 
-    <button ion-button clear>
-      Botao
-    </button>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="options"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar color="danger">
@@ -26,10 +28,13 @@
    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
   </p>
-  <a href="javascript:void(0)" ion-button color="light">Meu primeiro botão</a>
+  <a href="javascript:void(0)" ion-button color="light" >
+    <ion-icon name="star"></ion-icon>
+    Meu primeiro botão
+  </a>
 
-  <button ion-button large>Large</button>
-  <button ion-button>Default</button>
+  <button ion-button large icon-start><ion-icon name="checkmark"></ion-icon>Large</button>
+  <button ion-button outline color='secondary' icon-start><ion-icon name="star"></ion-icon> Default</button>
   <button ion-button small>Small</button>
 </ion-content>
 
